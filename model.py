@@ -23,8 +23,16 @@ def argmax_rows(matrix):
         ans.append(index)
     return np.array(ans)
 
-# Step 2 - row_max (not yet solved)
-# TODO: implement
+# Step 2 - row_max
+import numpy as np
+
+def row_max(matrix):
+    ans = []
+    for row in matrix:
+        temp = []
+        temp.append(max(row))
+        ans.append(temp)
+    return np.array(ans)
 
 # Step 3 - row_sum (not yet solved)
 # TODO: implement
