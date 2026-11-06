@@ -118,8 +118,16 @@ def stable_softmax(logits):
             logits[i][j] = logits[i][j] / sum_of_row
     return logits
 
-# Step 6 - one_hot (not yet solved)
-# TODO: implement
+# Step 6 - one_hot
+def one_hot(labels, num_classes):
+    # TODO: convert integer labels into a (N, num_classes) one-hot float matrix
+    # print(labels)
+    # print(num_classes)
+    ans =np.zeros((len(labels),int(num_classes)),dtype=float)
+    for i in range(0,len(labels)):
+        ans[i][labels[i]]=1
+
+    return ans
 
 # Step 7 - gather_true_class_probs (not yet solved)
 # TODO: implement
