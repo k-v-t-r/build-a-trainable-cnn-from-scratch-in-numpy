@@ -161,8 +161,30 @@ def cross_entropy_loss(probs, labels, eps=1e-12):
         logsum = logsum +np.log(prob)
     return (-1)*(logsum/len(labels))
 
-# Step 9 - accuracy (not yet solved)
-# TODO: implement
+# Step 9 - accuracy
+def argmax_rows(matrix):
+    index =0
+    ans = []
+    for row in matrix:
+        maximum = row[-1]
+        index = len(row) -1
+        pointer = len(row) -1
+        while pointer>=0:
+            num=row[pointer]
+            if maximum <= num:
+                index = pointer
+                maximum = num
+            pointer = pointer -1
+        ans.append(index)
+    return np.array(ans)
+def accuracy(logits_or_probs, labels):
+    # TODO: return the fraction of rows whose argmax matches the integer label.
+    output = argmax_rows(logits_or_probs)
+    cnt = 0
+    for i in range(0,len(output)):
+        if output[i]==labels[i]:
+            cnt = cnt+1
+    return cnt/len(labels)
 
 # Step 10 - he_std (not yet solved)
 # TODO: implement
