@@ -34,8 +34,17 @@ def row_max(matrix):
         ans.append(temp)
     return np.array(ans)
 
-# Step 3 - row_sum (not yet solved)
-# TODO: implement
+# Step 3 - row_sum
+import numpy as np
+
+def row_sum(matrix):
+    """Return per-row sums of a 2D array with shape (N, 1)."""
+    ans =[]
+    for row in matrix:
+        temp = []
+        temp.append(sum(row))
+        ans.append(temp)
+    return np.array(ans)
 
 # Step 4 - exp_shifted (not yet solved)
 # TODO: implement
