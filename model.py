@@ -77,8 +77,46 @@ def exp_shifted(logits):
     
     return np.array(substracted)
 
-# Step 5 - stable_softmax (not yet solved)
-# TODO: implement
+# Step 5 - stable_softmax
+def row_sum(matrix):
+    """Return per-row sums of a 2D array with shape (N, 1)."""
+    ans =[]
+    for row in matrix:
+        temp = []
+        temp.append(sum(row))
+        ans.append(temp)
+    return np.array(ans)
+
+def exp_shifted(logits):
+    """Subtract per-row max from logits and exponentiate elementwise."""
+    # TODO: shift each row of logits by its max and return elementwise exp
+    # print(type(logits))
+    # print(len(logits))
+    # print(len(logits[0]))
+    
+    substracted = []
+    maxnum = row_max(logits)
+    i =0
+    for row in logits:
+        maxnumber = maxnum[i][0]
+        i = i+1
+        temp = []
+        for num in row:
+            temp.append(num - maxnumber)
+        substracted.append(np.exp(temp))
+    
+    return np.array(substracted)
+
+def stable_softmax(logits):
+    # TODO: Compute a numerically stable softmax row-wise over (N, C) logits.
+    logits = exp_shifted(logits)
+    sumarray = row_sum(logits)
+    # print(sumarray)
+    for i in range(0,len(logits)):
+        sum_of_row = sumarray[i][0]
+        for j in range(0,len(logits[0])):
+            logits[i][j] = logits[i][j] / sum_of_row
+    return logits
 
 # Step 6 - one_hot (not yet solved)
 # TODO: implement
